@@ -49,7 +49,7 @@ def preprocess_data(df:pd.DataFrame) -> pd.DataFrame:
         logger.debug("Data prepriocesing completed")
         return df
     except KeyError as e:
-        logger.erro('Miossing column in the dataframe: %s', e)
+        logger.error('Missing column in the dataframe: %s', e)
         raise
     except Exception as e:
         logger.error('Unexcepted error during preprocessing: %s', e)
@@ -75,7 +75,8 @@ def save_data(train_data :pd.DataFrame, test_data :pd.DataFrame, data_path:str) 
 def main():
     try:
         test_size = 0.2
-        data_path = "https://raw.githubusercontent.com/Kabhishek021/END_TO_END_ML_PIPELINE_USING_DVC_AWSS3/refs/heads/main/spam.csv"
+        data_path = "https://raw.githubusercontent.com/Kabhishek021/END_TO_END_ML_PIPELINE_USING_DVC_AWSS3/refs/heads/main/experiments/spam.csv"
+        
         df =load_data(data_url = data_path)
         final_df = preprocess_data(df)
         train_data ,test_data = train_test_split(final_df ,test_size = test_size , random_state =42)
