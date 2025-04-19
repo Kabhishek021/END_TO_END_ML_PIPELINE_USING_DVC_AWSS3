@@ -15,10 +15,10 @@ stages:
     outs:
     - data/interim
   feature_engineering:
-    cmd: python src/feature_engineering.py   
+    cmd: python src/feature_engineering.py
     deps:
     - data/interim
-    - src/feature_engineering.py  
+    - src/feature_engineering.py
     params:
     - feature_engineering.max_features
     outs:
@@ -34,9 +34,16 @@ stages:
     outs:
     - models/model.pkl
   model_evaluation:
-    cmd: python src/model_evaluation.py  
+    cmd: python src/model_evaluation.py
     deps:
     - models/model.pkl
     - src/model_evaluation.py
     metrics:
     - reports/metrics.json
+params:
+- dvclive/params.yaml
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step
